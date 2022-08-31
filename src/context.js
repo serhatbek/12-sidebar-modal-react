@@ -3,11 +3,34 @@ import { useState, useContext, createContext } from 'react';
 const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const openModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
+  const openSidebar = () => {
+    setIsSidebarVisible(true);
+    console.log('open sidebar');
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarVisible(false);
+    console.log('close sidebar');
+  };
+
   const values = {
-    name: 'tb',
-    lastName: 'bek',
-    age: 22,
-    prof: 'artist',
+    isSidebarVisible,
+    isModalVisible,
+    openModal,
+    closeModal,
+    openSidebar,
+    closeSidebar,
   };
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 };
